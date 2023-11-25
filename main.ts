@@ -1,17 +1,30 @@
-let waitTime = 100
+let waitInterval = 10
+let waitTime = randint(300, 600)
+let checkTime = 50
 let isClear = false
-blocks.place(EMERALD_BLOCK, pos(0, 0, 0))
+let isViewPrompt = false
+let inputCheckPos = world(0, -61, 0)
+blocks.place(AIR, inputCheckPos)
 gameplay.title(mobs.target(NEAREST_PLAYER), "ボタンを...", "")
-loops.pause(1000 * randint(3, 6))
-gameplay.title(mobs.target(NEAREST_PLAYER), "押せ！", "")
-for (let index = 0; index < waitTime; index++) {
-    if (blocks.testForBlock(EMERALD_BLOCK, pos(0, 0, 0))) {
-        isClear = true
+for (let time = 0; time < waitTime + checkTime; time++) {
+    // 入力のタイミングに応じて処理を切り替える
+    if (blocks.testForBlock(EMERALD_BLOCK, inputCheckPos)) {
+        if (waitTime < time) {
+            isClear = true
+        }
+        
         break
     }
     
-    loops.pause(10)
+    // 入力を促すテキストを表示
+    if (!isViewPrompt && waitTime < time) {
+        isViewPrompt = true
+        gameplay.title(mobs.target(NEAREST_PLAYER), "押せ！", "")
+    }
+    
+    loops.pause(waitInterval)
 }
+// フラグに応じて結果を表示
 if (isClear) {
     gameplay.title(mobs.target(NEAREST_PLAYER), "クリア！", "")
 } else {
