@@ -1,18 +1,16 @@
-let waitInterval = 10
-let waitTime = randint(300, 600)
-let checkTime = 50
+let waitInterval = 100
+let waitTime = randint(30, 60)
+let checkTime = 7
+// 入力の猶予
 let isClear = false
 let isViewPrompt = false
-let inputCheckPos = world(0, -61, 0)
-blocks.place(AIR, inputCheckPos)
+let inputCheckPos = world(0, -62, 1)
+blocks.fill(AIR, inputCheckPos, inputCheckPos, FillOperation.Replace)
 gameplay.title(mobs.target(NEAREST_PLAYER), "ボタンを...", "")
 for (let time = 0; time < waitTime + checkTime; time++) {
     // 入力のタイミングに応じて処理を切り替える
     if (blocks.testForBlock(EMERALD_BLOCK, inputCheckPos)) {
-        if (waitTime < time) {
-            isClear = true
-        }
-        
+        isClear = waitTime < time
         break
     }
     
