@@ -2,8 +2,8 @@ interval = 100
 waitTime = randint(30, 60)
 checkTime = 7  #入力の猶予
 isClear = False
-isViewPrompt = False
 inputCheckPos = world(0,-62,1)
+isViewPrompt = False
 
 blocks.fill(AIR, inputCheckPos, inputCheckPos, FillOperation.REPLACE)
 gameplay.title(mobs.target(NEAREST_PLAYER), "ボタンを...", "")

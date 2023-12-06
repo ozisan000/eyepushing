@@ -3,8 +3,8 @@ let waitTime = randint(30, 60)
 let checkTime = 7
 // 入力の猶予
 let isClear = false
-let isViewPrompt = false
 let inputCheckPos = world(0, -62, 1)
+let isViewPrompt = false
 blocks.fill(AIR, inputCheckPos, inputCheckPos, FillOperation.Replace)
 gameplay.title(mobs.target(NEAREST_PLAYER), "ボタンを...", "")
 for (let time = 0; time < waitTime + checkTime; time++) {
