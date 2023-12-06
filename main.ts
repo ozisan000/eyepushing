@@ -1,4 +1,4 @@
-let waitInterval = 100
+let interval = 100
 let waitTime = randint(30, 60)
 let checkTime = 7
 // 入力の猶予
@@ -20,7 +20,7 @@ for (let time = 0; time < waitTime + checkTime; time++) {
         gameplay.title(mobs.target(NEAREST_PLAYER), "押せ！", "")
     }
     
-    loops.pause(waitInterval)
+    loops.pause(interval)
 }
 // フラグに応じて結果を表示
 if (isClear) {

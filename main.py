@@ -1,4 +1,4 @@
-waitInterval = 100
+interval = 100
 waitTime = randint(30, 60)
 checkTime = 7  #入力の猶予
 isClear = False
@@ -19,7 +19,7 @@ for time in range(waitTime + checkTime):
         isViewPrompt = True
         gameplay.title(mobs.target(NEAREST_PLAYER), "押せ！", "")
 
-    loops.pause(waitInterval)
+    loops.pause(interval)
 
 #フラグに応じて結果を表示
 if isClear:
