@@ -1,3 +1,4 @@
+let isChecking: boolean;
 let interval = 100
 let waitTime = randint(30, 60)
 let checkTime = 7
@@ -9,13 +10,14 @@ blocks.fill(AIR, inputCheckPos, inputCheckPos, FillOperation.Replace)
 gameplay.title(mobs.target(NEAREST_PLAYER), "ボタンを...", "")
 for (let time = 0; time < waitTime + checkTime; time++) {
     // 入力のタイミングに応じて処理を切り替える
+    isChecking = waitTime < time
     if (blocks.testForBlock(EMERALD_BLOCK, inputCheckPos)) {
-        isClear = waitTime < time
+        isClear = isChecking
         break
     }
     
     // 入力を促すテキストを表示
-    if (!isViewPrompt && waitTime < time) {
+    if (!isViewPrompt && isChecking) {
         isViewPrompt = true
         gameplay.title(mobs.target(NEAREST_PLAYER), "押せ！", "")
     }

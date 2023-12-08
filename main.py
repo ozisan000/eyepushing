@@ -10,12 +10,13 @@ gameplay.title(mobs.target(NEAREST_PLAYER), "ボタンを...", "")
 
 for time in range(waitTime + checkTime):
     #入力のタイミングに応じて処理を切り替える
+    isChecking = waitTime < time
     if blocks.test_for_block(EMERALD_BLOCK, inputCheckPos):
-        isClear = waitTime < time
+        isClear = isChecking
         break
 
     #入力を促すテキストを表示
-    if not isViewPrompt and waitTime < time:
+    if not isViewPrompt and isChecking:
         isViewPrompt = True
         gameplay.title(mobs.target(NEAREST_PLAYER), "押せ！", "")
 
@@ -26,4 +27,3 @@ if isClear:
     gameplay.title(mobs.target(NEAREST_PLAYER), "クリア！", "")
 else:
     gameplay.title(mobs.target(NEAREST_PLAYER), "ゲームオーバー！", "")
-    #mobs.kill(mobs.target(NEAREST_PLAYER))
